@@ -1,9 +1,29 @@
 // CoFoundersLab Auto-Connect Bot
+const fs = require('fs');
+const path = require('path');
+
 const API_BASE = 'https://cofounderslab.com/api/backend';
 const AUTH_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjkyOWI3MDY1ZjlhMjE1OTAyNTc3MyIsImVtYWlsIjoibWljaGFsZTAyMjVAb3V0bG9vay5jb20iLCJwcm9maWxlIjoiNjhmOTJhMDYwNjVmOWEyMTU5MDI1OTNmIiwiaWF0IjoxNzcwNjMxMjc1LCJleHAiOjE3NzEyMzYwNzV9.gM3YYMycTpfu3zldyHH28DivkB5YLtYLIAiJNoexmQw';
 
 // SET YOUR DISCORD WEBHOOK URL HERE
 let DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1470416656864907434/ACecuVYrZr986MpLQ_QOevajfJbRHyo0KcCQWWWFXk6EGTYxtbXVn5d-czlkjhI88s4Q';
+
+// Save current page to this file
+function savePageToFile(page) {
+  try {
+    const filePath = __filename;
+    let content = fs.readFileSync(filePath, 'utf8');
+    
+    // Replace the currentPage value in the file
+    content = content.replace(/let currentPage = \d+;/, `let currentPage = ${page};`);
+    content = content.replace(/currentPage: \d+/, `currentPage: ${page}`);
+    
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.log(`💾 Saved current page ${page} to file`);
+  } catch (error) {
+    console.error('Error saving page to file:', error);
+  }
+}
 
 let currentPage = 10056;
 let isRunning = false;
@@ -182,6 +202,7 @@ async function startBot() {
     }
 
     currentPage++;
+    savePageToFile(currentPage); // Save progress to file after each page
     await delay(1000); // 1 second delay between pages
     
     // Log stats every 5 pages
@@ -191,6 +212,7 @@ async function startBot() {
   }
 
   isRunning = false;
+  savePageToFile(currentPage); // Save current page to file when bot stops
   console.log('\n🛑 Bot stopped');
   console.log('Final stats:', stats);
 }
@@ -242,6 +264,7 @@ if (typeof require !== 'undefined' && require.main === module) {
     console.log('\n\n🛑 Stopping bot...');
     stopBot();
     setTimeout(() => {
+      savePageToFile(currentPage); // Save to file before exit
       console.log('Final stats:', getStats());
       process.exit(0);
     }, 1000);
