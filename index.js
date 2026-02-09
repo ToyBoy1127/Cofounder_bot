@@ -25,14 +25,14 @@ function savePageToFile(page) {
   }
 }
 
-let currentPage = 10056;
+let currentPage = 10060;
 let isRunning = false;
 let stats = {
   profilesFetched: 0,
   messagesSent: 0,
   errors: 0,
   skipped: 0,
-  currentPage: 10056
+  currentPage: 10060
 };
 
 // Fetch profiles from search API
@@ -262,8 +262,8 @@ if (typeof require !== 'undefined' && require.main === module) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end(`Bot is running!\nCurrent page: ${currentPage}\nMessages sent: ${stats.messagesSent}`);
   });
-  server.listen(3000, () => {
-    console.log('✅ Keep-alive server running on port 3000');
+  server.listen(4000, () => {
+    console.log('✅ Keep-alive server running on port 4000');
   });
   
   // Start the bot automatically
