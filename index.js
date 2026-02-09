@@ -5,7 +5,7 @@ const AUTH_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Zjky
 // SET YOUR DISCORD WEBHOOK URL HERE
 let DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1470416656864907434/ACecuVYrZr986MpLQ_QOevajfJbRHyo0KcCQWWWFXk6EGTYxtbXVn5d-czlkjhI88s4Q';
 
-let currentPage = 10024;
+let currentPage = 10029;
 let isRunning = false;
 let stats = {
   profilesFetched: 0,
