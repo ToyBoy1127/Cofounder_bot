@@ -256,6 +256,16 @@ if (typeof require !== 'undefined' && require.main === module) {
     console.log('Edit the DISCORD_WEBHOOK_URL variable in the script.\n');
   }
   
+  // Keep-alive web server for Replit
+  const http = require('http');
+  const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(`Bot is running!\nCurrent page: ${currentPage}\nMessages sent: ${stats.messagesSent}`);
+  });
+  server.listen(3000, () => {
+    console.log('✅ Keep-alive server running on port 3000');
+  });
+  
   // Start the bot automatically
   startBot();
   
