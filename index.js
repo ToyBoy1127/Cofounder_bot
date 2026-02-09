@@ -25,14 +25,14 @@ function savePageToFile(page) {
   }
 }
 
-let currentPage = 10060;
+let currentPage = 10064;
 let isRunning = false;
 let stats = {
   profilesFetched: 0,
   messagesSent: 0,
   errors: 0,
   skipped: 0,
-  currentPage: 10060
+  currentPage: 10064
 };
 
 // Fetch profiles from search API
@@ -203,7 +203,7 @@ async function startBot() {
 
     currentPage++;
     savePageToFile(currentPage); // Save progress to file after each page
-    await delay(1000); // 1 second delay between pages
+    await delay(500); // 0.5 second delay between pages
     
     // Log stats every 5 pages
     if (currentPage % 5 === 0) {
