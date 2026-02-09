@@ -25,14 +25,14 @@ function savePageToFile(page) {
   }
 }
 
-let currentPage = 10064;
+let currentPage = 10072;
 let isRunning = false;
 let stats = {
   profilesFetched: 0,
   messagesSent: 0,
   errors: 0,
   skipped: 0,
-  currentPage: 10064
+  currentPage: 10072
 };
 
 // Fetch profiles from search API
@@ -169,7 +169,7 @@ async function processPage(page) {
       if (success) {
         successfulNames.push(name);
       }
-      await delay(100); // 0.1 second delay between messages
+      await delay(50); // 0.05 second delay between messages
     }
   }
 
@@ -203,7 +203,7 @@ async function startBot() {
 
     currentPage++;
     savePageToFile(currentPage); // Save progress to file after each page
-    await delay(500); // 0.5 second delay between pages
+    await delay(100); // 0.1 second delay between pages
     
     // Log stats every 5 pages
     if (currentPage % 5 === 0) {
