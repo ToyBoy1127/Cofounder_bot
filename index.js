@@ -5,7 +5,7 @@ const AUTH_TOKEN = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Zjky
 // SET YOUR DISCORD WEBHOOK URL HERE
 let DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1470416656864907434/ACecuVYrZr986MpLQ_QOevajfJbRHyo0KcCQWWWFXk6EGTYxtbXVn5d-czlkjhI88s4Q';
 
-let currentPage = 10013;
+let currentPage = 10024;
 let isRunning = false;
 let stats = {
   profilesFetched: 0,
@@ -50,7 +50,7 @@ async function sendConnectionRequest(profileId, profileName) {
       },
       body: JSON.stringify({
         profile: profileId,
-        message: 'hi!'
+        message: "Hi! It's a pleasure to meet you. I hope you're doing well. Thank you so much for taking a moment to read my message—I really appreciate it! I'm a software engineer with over four years of experience, mainly working as a freelancer on technical and blockchain projects like analytics, development support, and consulting through platforms like Freelancer.com and Upwork.com. Most of my work involves collaborating with clients from around the world, where they post their development needs and hire developers to bring their projects to life. I'm excited about the idea of partnering with a trustworthy collaborator based in America or Europe to build a long-term working relationship. In this partnership: - I will take care of all technical development tasks. - You would help with client communication and managing the accounts. - We will keep earnings transparent. - Profits will be shared monthly (for example, an 80/20 split). I typically earn between $2,000 and $3,000 each month. This setup requires no technical work from you and is designed to be beneficial for both of us, built on mutual trust and clarity. Since many clients prefer developers from America or Europe, freelancing platforms tend to favor accounts from these regions. That's why I'm looking for an American or European partner. Setting up the account is simple, and I plan to use a VPN to ensure everything remains secure and running smoothly. Because I will be using the account with your information, you will have full control over all aspects, including income management. At first, you would receive 20% of all earnings, and you can transfer the remaining 80%.  Our collaboration will be completely transparent, based on a clear revenue-sharing agreement. If this sounds good to you, please feel free to reply here—I'm happy to discuss further details. Looking forward to hearing from you! Email: toyboy1127@gmaildotcom Telegram: @GmTrader007 Discord: @martins_009"
       })
     });
 
@@ -85,7 +85,7 @@ async function sendDiscordAlert(names, page) {
 
   try {
     const message = {
-      content: `**Page ${page} - Connected with ${names.length} profiles:**\n${names.join('\n')}`
+      content: `**Page ${page} - Connected with ${names.length} profiles**`
     };
 
     const response = await fetch(DISCORD_WEBHOOK_URL, {
@@ -182,7 +182,7 @@ async function startBot() {
     }
 
     currentPage++;
-    await delay(2000); // 2 second delay between pages
+    await delay(1000); // 1 second delay between pages
     
     // Log stats every 5 pages
     if (currentPage % 5 === 0) {
